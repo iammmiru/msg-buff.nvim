@@ -41,9 +41,7 @@ function M.show_messages()
 	lines = vim.tbl_filter(function(line)
 		return line:match("%S") ~= nil
 	end, lines)
-	for i = 1, math.floor(#lines / 2) do
-		lines[i], lines[#lines - i + 1] = lines[#lines - i + 1], lines[i]
-	end
+
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 	local width = math.floor(vim.o.columns * (M.config.width or 0.7))
